@@ -180,7 +180,7 @@ int main(int argc, char* argv[]) {
     }
 
     Vec3 camPos = { 0, 0, -5 };
-    double scaleFactor = 200.0;  // Screen-space scaling (I'm Lazy)
+    double scaleFactor = 300.0;  // Screen-space scaling (I'm Lazy)
     double halfWidth = WINDOW_WIDTH / 2.0;
     double halfHeight = WINDOW_HEIGHT / 2.0;
 
@@ -233,7 +233,7 @@ int main(int argc, char* argv[]) {
                     }
                 }
                 if (tNear > tFar || tFar < 0) {
-                    pixels[y * WINDOW_WIDTH + x] = 0xFF000000;
+                    pixels[y * WINDOW_WIDTH + x] = 0x00FF00; // bg R, G, B Currently: Green
                     continue;
                 }
                 double tHit = (tNear >= 0) ? tNear : tFar;
@@ -244,7 +244,7 @@ int main(int argc, char* argv[]) {
                 if (diff < 0) diff = 0;
                 int c = (int)(diff * 255);
                 if (c > 255) c = 255;
-                uint32_t color = 0xFF000000 | (c << 16) | (c << 8) | c;
+                uint32_t color = 0x000000 | (c << 16) | (c << 8) | c; // light R, G, B flickers when changed idk why
                 pixels[y * WINDOW_WIDTH + x] = color;
             }
         }
